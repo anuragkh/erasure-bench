@@ -2,6 +2,8 @@ CC := g++
 SRCDIR := src
 BUILDDIR := build
 BINDIR := bin
+LIBDIR := lib
+INCDIR := include
 
 TARGET_EN := $(BINDIR)/encoder
 OBJ_EN := $(BUILDDIR)/Encoder.o
@@ -13,15 +15,16 @@ SRC_DE := $(SRCDIR)/Decoder.cpp
 
 CFLAGS := -O3 -g -Wall
 
-LIB := -L lib -llonghair
-INC := -I include
 
+LIB := -L $(LIBDIR) -llonghair
+INC := -I $(INCDIR)
 all: longhair encoder decoder
 
 longhair:
 	@echo "Building longhair library..."
-	@echo "cd external/longhair; make; cp bin/* ../../lib";\
-		cd external/longhair; make; cp bin/* ../../lib
+	mkdir -p $(LIBDIR)
+	@echo "cd external/longhair; make; cp bin/* ../../lib/";\
+		cd external/longhair; make; cp bin/* ../../lib/
 
 encoder: $(TARGET_EN)
 
