@@ -13,7 +13,7 @@ TARGET_DE := $(BINDIR)/decoder
 OBJ_DE := $(BUILDDIR)/Decoder.o
 SRC_DE := $(SRCDIR)/Decoder.cpp
 
-CFLAGS := -O3 -g -Wall
+CFLAGS := -O3 -g -Wall -std=c++11
 
 
 LIB := -L $(LIBDIR) -llonghair
