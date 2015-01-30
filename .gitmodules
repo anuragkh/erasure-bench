@@ -1,0 +1,3 @@
+[submodule "longhair"]
+    path = external/longhair
+    url = https://github.com/catid/longhair
