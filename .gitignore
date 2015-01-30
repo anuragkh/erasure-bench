@@ -1,0 +1,10 @@
+#Build files
+build
+bin
+lib
+*.o
+*.a
+
+#Scratch and data files
+dat
+scratch
