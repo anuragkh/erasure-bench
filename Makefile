@@ -22,6 +22,7 @@ all: longhair encoder decoder
 
 longhair:
 	@echo "Building longhair library..."
+	git submodule update --init
 	mkdir -p $(LIBDIR)
 	@echo "cd external/longhair; make; cp bin/* ../../lib/";\
 		cd external/longhair; make; cp bin/* ../../lib/
