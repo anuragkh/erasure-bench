@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
 
 	int c;
     uint32_t data_blocks = 10;					// 10 data blocks
-    uint32_t parity_blocks = 4;					// 4 parity blocks
+    uint32_t parity_blocks = 2;					// 2 parity blocks
     uint32_t block_size = 128 * 1024 * 1024;	// 128MB blocks
     while((c = getopt(argc, argv, "d:p:b:")) != -1) {
         switch(c) {
