@@ -1,4 +1,5 @@
 #include <Encoder.hpp>
+#include <Commons.hpp>
 
 Encoder::Encoder(std::string input, uint32_t data_blocks, uint32_t parity_blocks, uint32_t block_size) {
     this->input = input;
@@ -10,14 +11,9 @@ Encoder::Encoder(std::string input, uint32_t data_blocks, uint32_t parity_blocks
     
     fseek(file, 0, SEEK_END);
     this->len = ftell(file);
-    
     fseek(file, 0, SEEK_SET);
-    this->data = new uint8_t[this->len];
-    
-    size_t bytes_read = fread(this->data, sizeof(uint8_t), this->len, file);
-
-    // Ensure all bytes are read
-    assert(bytes_read == this->len);
+	
+    this->data = (uint8_t *) memory_map(input);
 
 	this->data_blocks = data_blocks;
 	this->parity_blocks = parity_blocks;

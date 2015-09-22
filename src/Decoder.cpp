@@ -11,14 +11,9 @@ Decoder::Decoder(std::string input, uint32_t data_blocks, uint32_t parity_blocks
     
     fseek(file, 0, SEEK_END);
     this->len = ftell(file);
-    
     fseek(file, 0, SEEK_SET);
-    this->data = new uint8_t[this->len];
-    
-    size_t bytes_read = fread(this->data, sizeof(uint8_t), this->len, file);
-
-    // Ensure all bytes are read
-    assert(bytes_read == this->len);
+	
+    this->data = this->data = (uint8_t *) memory_map(input);
 
     // Populate data blocks array
     this->d_blocks = new uint8_t*[data_blocks];
@@ -39,12 +34,7 @@ Decoder::Decoder(std::string input, uint32_t data_blocks, uint32_t parity_blocks
     assert(plen == parity_blocks * block_size);
     
     fseek(pfile, 0, SEEK_SET);
-    this->p_blocks = new uint8_t[plen];
-    
-    size_t pbytes_read = fread(p_blocks, sizeof(uint8_t), plen, pfile);
-
-    // Ensure all bytes are read
-    assert(pbytes_read == plen);
+    this->p_blocks = (uint8_t *) memory_map(input + ".parity");
 
     // Assume data needs to be reconstructed from all parity blocks, and minimum number of data blocks
     blocks = new Block[data_blocks];
